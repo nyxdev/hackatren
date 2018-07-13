@@ -10,6 +10,7 @@ import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
 import nyxdev.hackatren.taralrt1.R
 import nyxdev.hackatren.taralrt1.global.scope.FragmentScope
+import nyxdev.hackatren.taralrt1.integration.network.NetworkService
 
 @Module
 object RegistrationModule {
@@ -37,6 +38,6 @@ object RegistrationModule {
     @FragmentScope
     @Provides
     @JvmStatic
-    fun providePresenter(viewMethod: HasRegistrationContract.ViewMethod): HasRegistrationContract.Presenter = RegistrationImpl(viewMethod)
+    fun providePresenter(viewMethod: HasRegistrationContract.ViewMethod,networkService: NetworkService): HasRegistrationContract.Presenter = RegistrationImpl(viewMethod,networkService.restRepository)
 
 }

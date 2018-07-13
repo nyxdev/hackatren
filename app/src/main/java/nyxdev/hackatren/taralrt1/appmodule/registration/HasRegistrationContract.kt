@@ -6,6 +6,7 @@ package nyxdev.hackatren.taralrt1.appmodule.registration
 
 import android.support.v4.view.ViewPager
 import cn.pedant.SweetAlert.SweetAlertDialog
+import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import kotlinx.coroutines.experimental.Job
 import nyxdev.hackatren.taralrt1.integration.dao.table.AccountEntity
@@ -36,7 +37,7 @@ interface HasRegistrationContract {
     }
 
     interface Presenter {
-        fun createAccount(accountEntity: AccountEntity)
+        fun createAccount(accountEntity: AccountEntity): Disposable
     }
 
 }

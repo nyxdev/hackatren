@@ -5,6 +5,7 @@
 package nyxdev.hackatren.taralrt1.appmodule.registration
 
 import android.os.Bundle
+import android.os.StrictMode
 import android.util.Log
 import cn.pedant.SweetAlert.SweetAlertDialog
 import io.reactivex.Observable
@@ -71,11 +72,11 @@ class RegistrationController : DIBaseSwipeFragment(), HasRegistrationContract.Ev
     override fun onNextEvent() {
         if (viewMethod.getNextButtonText() == Constant.NEXT){
             viewMethod.moveViewPagerForward()
-        }else subscription.add(Observable.just(accountEntity)
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(Schedulers.newThread())
-                .doOnNext { presenter.createAccount(it) }
-                .subscribe())
+        }else{
+            viewMethod.showLoadingDialog()
+            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
+            subscription.add(presenter.createAccount(accountEntity))
+        }
     }
 
     override fun onPageSelected(position: Int) {
