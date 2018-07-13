@@ -1,0 +1,11 @@
+package nyxdev.hackatren.taralrt1.integration.network
+
+import io.reactivex.Observable
+import nyxdev.hackatren.taralrt1.global.model.obj.rss.RSS
+import retrofit2.http.GET
+import retrofit2.http.Url
+
+interface RSSRepository {
+    @GET
+    fun announcementRequest(@Url url:String="http://lrmc.ph/category/news/feed/" ): Observable<RSS>
+}
