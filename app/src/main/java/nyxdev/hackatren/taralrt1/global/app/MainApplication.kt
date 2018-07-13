@@ -7,6 +7,7 @@ package nyxdev.hackatren.taralrt1.global.app
 
 import android.content.Context
 import android.support.multidex.MultiDex
+import com.onesignal.OneSignal
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
@@ -19,4 +20,11 @@ class MainApplication : DaggerApplication() {
         MultiDex.install(base)
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init()
+    }
 }

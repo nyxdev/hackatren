@@ -23,7 +23,7 @@ object RewardModule {
     @JvmStatic
     fun provideAdapter(controller: RewardController): RewardAdapter {
         val adapter = RewardAdapter()
-        val  viewHolderOption= RewardViewholderOption(context = controller.context!!, adapter = adapter)
+        val  viewHolderOption= RewardViewholderOption(context = controller.context!!, adapter = adapter,event=controller as HasRewardContract.Event)
         val  viewHolderTitle= RewardViewholderTitle(context = controller.context!!, adapter = adapter)
         val  viewHolderHistory= RewardViewholderHistory(context = controller.context!!, adapter = adapter)
         viewHolderOption.setContentView(R.layout.item_list_reward_option)

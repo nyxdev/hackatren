@@ -6,6 +6,7 @@ package nyxdev.hackatren.taralrt1.appmodule.reward
 
 import android.os.Bundle
 import io.reactivex.disposables.CompositeDisposable
+import nyxdev.hackatren.taralrt1.R
 import nyxdev.hackatren.taralrt1.appmodule.home.HomeView
 import nyxdev.hackatren.taralrt1.global.base.DIBaseFragment
 import javax.inject.Inject
@@ -27,5 +28,13 @@ class RewardController : DIBaseFragment(), HasRewardContract.Event {
         super.onDestroyView()
         HomeView.isOpenReward=false
         subscription.dispose()
+    }
+
+    override fun onEarnPointsEvent() {
+        viewMethod.gotoARFragment(activity!!.findViewById(R.id.appBarLayout))
+    }
+
+    override fun onRedeemEvent() {
+        viewMethod.showClaimRewardDialog()
     }
 }

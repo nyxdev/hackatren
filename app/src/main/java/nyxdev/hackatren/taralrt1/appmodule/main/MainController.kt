@@ -28,6 +28,7 @@ class MainController : DIBaseActivity(), HasMainContract.Event {
     override fun initialization(savedInstanceState: Bundle?) {
         ActivityCompat.requestPermissions(this, arrayOf(
                 Manifest.permission.NFC,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA)
                 , 1234)
     }

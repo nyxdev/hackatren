@@ -7,6 +7,8 @@ package nyxdev.hackatren.taralrt1.global.module.appconfig
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import nyxdev.hackatren.taralrt1.appmodule.ar.ARController
+import nyxdev.hackatren.taralrt1.appmodule.ar.ARModule
 import nyxdev.hackatren.taralrt1.appmodule.credentialpage.CredentialPageController
 import nyxdev.hackatren.taralrt1.appmodule.credentialpage.CredentialPageModule
 import nyxdev.hackatren.taralrt1.appmodule.crowdvolume.CrowdVolumeController
@@ -94,5 +96,9 @@ abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [RewardModule::class])
     internal abstract fun rewardInjector(): RewardController
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [ARModule::class])
+    internal abstract fun arInjector(): ARController
 
 }

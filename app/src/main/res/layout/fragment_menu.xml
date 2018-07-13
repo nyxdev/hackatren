@@ -8,7 +8,6 @@
     tools:context=".appmodule.menu.MenuController">
 
     <com.rey.material.widget.Button
-        style="@style/Material.Drawable.Ripple.Wave"
         android:layout_width="200dp"
         android:layout_height="45dp"
         android:layout_marginEnd="8dp"
@@ -23,6 +22,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        style="@style/Material.Drawable.Ripple.Wave"
         app:rd_enable="true"
         tools:ignore="SpUsage" />
 
