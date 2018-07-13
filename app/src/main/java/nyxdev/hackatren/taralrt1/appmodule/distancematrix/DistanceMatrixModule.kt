@@ -10,6 +10,7 @@ import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
 import nyxdev.hackatren.taralrt1.R
 import nyxdev.hackatren.taralrt1.global.scope.FragmentScope
+import nyxdev.hackatren.taralrt1.integration.network.NetworkService
 
 @Module
 object DistanceMatrixModule {
@@ -23,7 +24,10 @@ object DistanceMatrixModule {
     @JvmStatic
     fun provideComponent(controller: DistanceMatrixController): DistanceMatrixView {
         controller.rootView = controller.layoutInflater.inflate(R.layout.fragment_distancematrix, controller.container, false)
-        return DistanceMatrixView(controller.rootView!!, controller as HasDistanceMatrixContract.Event)
+        return DistanceMatrixView(
+                view = controller.rootView!!,
+                event = controller as HasDistanceMatrixContract.Event,
+                context = controller.context!!)
     }
 
     @FragmentScope
@@ -34,6 +38,9 @@ object DistanceMatrixModule {
     @FragmentScope
     @Provides
     @JvmStatic
-    fun providePresenter(viewMethod: HasDistanceMatrixContract.ViewMethod): HasDistanceMatrixContract.Presenter = DistanceMatrixImpl(viewMethod)
+    fun providePresenter(viewMethod: HasDistanceMatrixContract.ViewMethod,networkService: NetworkService): HasDistanceMatrixContract.Presenter
+            = DistanceMatrixImpl(
+            viewMethod = viewMethod,
+            googleETARepository=networkService.etaRepository)
 
 }

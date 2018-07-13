@@ -7,6 +7,8 @@ package nyxdev.hackatren.taralrt1.appmodule.home
 import android.graphics.Color
 import android.os.Build
 import android.support.v4.app.Fragment
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import jdp.pocketlib.util.Navigate
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.android.UI
@@ -21,6 +23,10 @@ class HomeViewImpl(
         private val view: HomeView
 ) : HasHomeContract.ViewMethod {
     override fun enabledDashBoard(): Job= launch(UI) {
+        YoYo.with(Techniques.Pulse)
+                .duration(500)
+                .playOn(view.btnDashboard)
+        view.appBarLayout.setExpanded(true,true)
         view.btnDashboard.setTextColor(Color.parseColor("#ff9900"))
         view.btnCrowdVolume.setTextColor(Color.parseColor("#c4afd6"))
         view.btnReward.setTextColor(Color.parseColor("#c4afd6"))
@@ -36,6 +42,10 @@ class HomeViewImpl(
         }
     }
     override fun enabledCrowd(): Job= launch(UI) {
+        YoYo.with(Techniques.Pulse)
+                .duration(500)
+                .playOn(view.btnCrowdVolume)
+        view.appBarLayout.setExpanded(false,true)
         view.btnCrowdVolume.setTextColor(Color.parseColor("#ff9900"))
         view.btnDashboard.setTextColor(Color.parseColor("#c4afd6"))
         view.btnReward.setTextColor(Color.parseColor("#c4afd6"))
@@ -52,6 +62,10 @@ class HomeViewImpl(
     }
 
     override fun enabledReward(): Job = launch(UI) {
+        YoYo.with(Techniques.Pulse)
+                .duration(500)
+                .playOn(view.btnReward)
+        view.appBarLayout.setExpanded(true,true)
         view.btnReward.setTextColor(Color.parseColor("#ff9900"))
         view.btnCrowdVolume.setTextColor(Color.parseColor("#c4afd6"))
         view.btnDashboard.setTextColor(Color.parseColor("#c4afd6"))

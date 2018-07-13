@@ -11,19 +11,16 @@ import nyxdev.hackatren.taralrt1.global.base.DIBaseFragment
 import javax.inject.Inject
 
 class RewardController : DIBaseFragment(), HasRewardContract.Event {
-    @field:[Inject]
-    internal lateinit var presenter: HasRewardContract.Presenter
-    @field:[Inject]
-    internal lateinit var viewMethod: HasRewardContract.ViewMethod
-    @field:[Inject]
-    internal lateinit var subscription: CompositeDisposable
+    @field:[Inject] internal lateinit var presenter: HasRewardContract.Presenter
+    @field:[Inject] internal lateinit var viewMethod: HasRewardContract.ViewMethod
+    @field:[Inject] internal lateinit var subscription: CompositeDisposable
 
     override fun initialization(savedInstanceState: Bundle?) {
         HomeView.isOpenReward=true
     }
 
     override fun onLoadEvent(savedInstanceState: Bundle?) {
-
+        presenter.loadDefaultItemList()
     }
 
     override fun onDestroyView() {

@@ -35,7 +35,6 @@ class MenuController : DIBaseFragment(), HasMenuContract.Event {
         subscription.dispose()
     }
     override fun signInWithGoogleEvent() {
-        MenuView.isOpenSignInWithGoogle=true
         startActivityForResult(googleSignInClient.signInIntent, AuthType.GOOGLE)
     }
 
@@ -43,7 +42,6 @@ class MenuController : DIBaseFragment(), HasMenuContract.Event {
         if (it is GoogleAuth) presenter.loginWithGoogle(taskGoogleSignInAccount=it.task!!)
     }
     override fun signInWithFacebookEvent() {
-        MenuView.isOpenSignInWithFB=true
     }
 
     override fun signInEvent() {

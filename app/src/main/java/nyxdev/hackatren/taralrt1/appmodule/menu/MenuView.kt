@@ -17,8 +17,6 @@ class MenuView(
         context: Context) {
     companion object Properties {
         var isOpenSignIn=false
-        var isOpenSignInWithGoogle=false
-        var isOpenSignInWithFB=false
         var isOpenRegistration=false
     }
     val btnSignInWithGoogle = view.findViewById<SignInButton>(R.id.btnSignInWithGoogle)!!.apply {
@@ -29,13 +27,13 @@ class MenuView(
     }
     val btnSignIn = view.findViewById<Button>(R.id.btnSignIn)!!.apply {
         this.setOnClickListener {
-            if (!MenuView.isOpenSignIn && !MenuView.isOpenSignInWithFB && !MenuView.isOpenSignInWithGoogle && !MenuView.isOpenRegistration)
+            if (!MenuView.isOpenSignIn &&  !MenuView.isOpenRegistration)
                 event.signInEvent()
         }
     }
     val btnRegister = view.findViewById<Button>(R.id.btnRegister)!!.apply {
         this.setOnClickListener {
-            if (!MenuView.isOpenSignIn && !MenuView.isOpenSignInWithFB && !MenuView.isOpenSignInWithGoogle && !MenuView.isOpenRegistration)
+            if (!MenuView.isOpenSignIn && !MenuView.isOpenRegistration)
                 event.registerEvent() }
     }
 

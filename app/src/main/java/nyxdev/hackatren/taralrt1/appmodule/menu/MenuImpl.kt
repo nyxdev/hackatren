@@ -22,7 +22,6 @@ class MenuImpl(
             // event(RegistrationRequirement(email))
         } catch (e: Exception) {
             e.printStackTrace()
-            MenuView.isOpenSignInWithGoogle=false
             viewMethod.showErrorDialog("Failed to connect with Google. Try Again!")
         }
     }

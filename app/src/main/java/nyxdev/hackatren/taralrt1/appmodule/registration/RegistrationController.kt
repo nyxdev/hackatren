@@ -57,8 +57,6 @@ class RegistrationController : DIBaseSwipeFragment(), HasRegistrationContract.Ev
         super.onDestroyView()
         subscription.dispose()
         credentialBus.unSubscribeReceiver()
-        MenuView.isOpenSignInWithGoogle=false
-        MenuView.isOpenSignInWithFB=false
         MenuView.isOpenRegistration=false
     }
 

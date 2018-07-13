@@ -4,14 +4,12 @@
  **/
 package nyxdev.hackatren.taralrt1.appmodule.reward
 
-import android.annotation.SuppressLint
-import dagger.Binds
+import android.support.v4.app.Fragment
 import dagger.Module
 import dagger.Provides
-import nyxdev.hackatren.taralrt1.global.scope.FragmentScope
 import io.reactivex.disposables.CompositeDisposable
 import nyxdev.hackatren.taralrt1.R
-import android.support.v4.app.Fragment
+import nyxdev.hackatren.taralrt1.global.scope.FragmentScope
 
 @Module
 object RewardModule {
@@ -23,19 +21,45 @@ object RewardModule {
     @FragmentScope
     @Provides
     @JvmStatic
-    fun provideComponent(controller: RewardController): RewardView {
+    fun provideAdapter(controller: RewardController): RewardAdapter {
+        val adapter = RewardAdapter()
+        val  viewHolderOption= RewardViewholderOption(context = controller.context!!, adapter = adapter)
+        val  viewHolderTitle= RewardViewholderTitle(context = controller.context!!, adapter = adapter)
+        val  viewHolderHistory= RewardViewholderHistory(context = controller.context!!, adapter = adapter)
+        viewHolderOption.setContentView(R.layout.item_list_reward_option)
+        viewHolderTitle.setContentView(R.layout.item_list_reward_title)
+        viewHolderHistory.setContentView(R.layout.item_list_reward_history)
+        adapter.addViewHolder(viewHolderOption)
+        adapter.addViewHolder(viewHolderTitle)
+        adapter.addViewHolder(viewHolderHistory)
+        return adapter
+    }
+
+
+    @FragmentScope
+    @Provides
+    @JvmStatic
+    fun provideComponent(controller: RewardController,adapter: RewardAdapter): RewardView {
         controller.rootView = controller.layoutInflater.inflate(R.layout.fragment_reward, controller.container, false)
-        return RewardView(controller.rootView!!, controller as HasRewardContract.Event)
+        return RewardView(
+                view = controller.rootView!!,
+                adapter= adapter)
     }
 
     @FragmentScope
     @Provides
     @JvmStatic
-    fun provideViewMethod(controller: RewardController, view: RewardView): HasRewardContract.ViewMethod = RewardViewImpl(fragment = controller as Fragment, view = view)
+    fun provideViewMethod(controller: RewardController, view: RewardView): HasRewardContract.ViewMethod
+            = RewardViewImpl(
+            fragment = controller as Fragment,
+            view = view)
 
     @FragmentScope
     @Provides
     @JvmStatic
-    fun providePresenter(viewMethod: HasRewardContract.ViewMethod): HasRewardContract.Presenter = RewardImpl(viewMethod)
+    fun providePresenter(viewMethod: HasRewardContract.ViewMethod,adapter: RewardAdapter): HasRewardContract.Presenter
+            = RewardImpl(
+            viewMethod = viewMethod,
+            adapter= adapter)
 
 }

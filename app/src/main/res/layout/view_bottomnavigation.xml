@@ -11,22 +11,28 @@
         android:layout_height="50dp">
 
         <com.rey.material.widget.Button
+            android:paddingTop="10dp"
             android:id="@+id/btnDashboard"
             style="@style/Material.Drawable.Ripple.Wave"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start|center"
             android:layout_weight="1"
+            android:textSize="12dp"
             android:background="@color/transparent"
             android:text="Dashboard"
             android:drawableTop="@drawable/bulletin_board"
+            android:fontFamily="@font/roboto_light"
             android:textColor="@color/bottomnav_disabled"
             app:rd_enable="true" />
         <com.rey.material.widget.Button
             android:id="@+id/btnCrowdVolume"
             style="@style/Material.Drawable.Ripple.Wave"
             android:layout_width="wrap_content"
+            android:textSize="12dp"
+            android:paddingTop="10dp"
             android:layout_height="match_parent"
+            android:fontFamily="@font/roboto_light"
             android:layout_gravity="start|center"
             android:layout_weight="1"
             android:background="@color/transparent"
@@ -36,7 +42,10 @@
             app:rd_enable="true" />
         <com.rey.material.widget.Button
             android:id="@+id/btnReward"
+            android:fontFamily="@font/roboto_light"
+            android:paddingTop="10dp"
             style="@style/Material.Drawable.Ripple.Wave"
+            android:textSize="12dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start|center"
